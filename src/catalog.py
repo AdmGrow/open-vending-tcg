@@ -1,11 +1,11 @@
-"""Sealed pack catalog. No IP art. SKU is generic.
+"""Lista de sobres. Nombres genericos, no de juegos reales.
 """
 from dataclasses import dataclass
 
 @dataclass
 class PackSku:
     sku: str
-    game: str          # generic: tcg-a, tcg-b — not a trademark
+    game: str          # tcg-a, tcg-b
     set_code: str
     language: str
     pack_type: str     # booster | blister | tin
