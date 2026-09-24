@@ -1,9 +1,8 @@
 # open-vending-tcg
 
-Quiero hacer una maquina que venda sobres de cartas. Esto es practica, no una tienda.
+Expendedora de sobres. Practica. Catalogo generico, sin marcas oficiales.
 
-No uso nombres ni dibujos de juegos reales. Solo un catalogo generico en `src/catalog.py`.
+Público. MIT. Lee `LEEME_LICENCIA.md`.
+Hacé tu versión. Podés ganar dinero con lo que armes. Sin garantía.
 
-Soy principiante. Si el diseno esta mal, comentame.
-
-MIT.
+`src/catalog.py`
