@@ -1,7 +1,9 @@
 # open-vending-tcg
 
-Sealed TCG pack vending. Tracks set, language, pack type.
-Not affiliated with Pokemon, Yu-Gi-Oh, Magic or any publisher.
-Do not ship official marks or art in this repo.
+Quiero hacer una maquina que venda sobres de cartas. Esto es practica, no una tienda.
 
-License: MIT. Public.
+No uso nombres ni dibujos de juegos reales. Solo un catalogo generico en `src/catalog.py`.
+
+Soy principiante. Si el diseno esta mal, comentame.
+
+MIT.
