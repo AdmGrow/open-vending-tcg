@@ -35,3 +35,11 @@ class Catalog:
         if qty < 0:
             raise ValueError("stock no puede ser negativo")
         self.stock[sku] = qty
+
+    def adjust_stock(self, sku: str, delta: int):
+        """Suma o resta stock. No deja ir debajo de 0."""
+        actual = self.get_stock(sku)
+        nuevo = actual + delta
+        if nuevo < 0:
+            raise ValueError("stock insuficiente")
+        self.set_stock(sku, nuevo)
