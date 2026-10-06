@@ -20,6 +20,8 @@ class Catalog:
     def add(self, sku: PackSku, qty: int = 0):
         if not sku.sealed:
             raise ValueError("only sealed product")
+        sku.set_code = sku.set_code.strip().lower()
+        sku.language = sku.language.strip().lower()
         self.items[sku.sku] = sku
         self.stock[sku.sku] = qty
 
@@ -56,7 +58,7 @@ class Catalog:
 if __name__ == "__main__":
     cat = Catalog()
     cat.add(PackSku("p1", "tcg-a", "set-1", "es", "booster", 400), 3)
-    cat.add(PackSku("p2", "tcg-a", "set-1", "es", "booster", 400), 2)
+    cat.add(PackSku("p2", "tcg-a", "set-1", "ES", "booster", 400), 2)
     cat.add(PackSku("p3", "tcg-a", "set-1", "en", "blister", 900), 1)
     print(cat.stock_por_set_idioma())
     # set-1|es = 5, set-1|en = 1
