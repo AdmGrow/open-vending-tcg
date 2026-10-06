@@ -43,3 +43,20 @@ class Catalog:
         if nuevo < 0:
             raise ValueError("stock insuficiente")
         self.set_stock(sku, nuevo)
+
+    def stock_por_set_idioma(self):
+        """Cuenta sobres por set e idioma. Clave: set_code|language."""
+        conteo = {}
+        for sku, item in self.items.items():
+            clave = item.set_code + "|" + item.language
+            conteo[clave] = conteo.get(clave, 0) + self.get_stock(sku)
+        return conteo
+
+
+if __name__ == "__main__":
+    cat = Catalog()
+    cat.add(PackSku("p1", "tcg-a", "set-1", "es", "booster", 400), 3)
+    cat.add(PackSku("p2", "tcg-a", "set-1", "es", "booster", 400), 2)
+    cat.add(PackSku("p3", "tcg-a", "set-1", "en", "blister", 900), 1)
+    print(cat.stock_por_set_idioma())
+    # set-1|es = 5, set-1|en = 1
