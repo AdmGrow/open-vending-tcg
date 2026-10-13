@@ -10,6 +10,8 @@ def test_cuenta_set_idioma():
     conteo = cat.stock_por_set_idioma()
     assert conteo["set-1|es"] == 5
     assert conteo["set-1|en"] == 1
+    assert cat.tiene_stock("set-1", "es")
+    assert not cat.tiene_stock("set-2", "es")
 
 if __name__ == "__main__":
     test_cuenta_set_idioma()
