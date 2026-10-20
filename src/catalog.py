@@ -59,6 +59,10 @@ class Catalog:
         clave = set_code.strip().lower() + "|" + language.strip().lower()
         return self.stock_por_set_idioma().get(clave, 0) > 0
 
+    def total_sobres(self) -> int:
+        """Cuenta todos los sobres que hay, de cualquier set o idioma."""
+        return sum(self.stock.values())
+
 
 if __name__ == "__main__":
     cat = Catalog()
@@ -67,4 +71,5 @@ if __name__ == "__main__":
     cat.add(PackSku("p3", "tcg-a", "set-1", "en", "blister", 900), 1)
     print(cat.stock_por_set_idioma())
     print(cat.tiene_stock("set-1", "es"))
-    # set-1|es = 5, set-1|en = 1
+    print(cat.total_sobres())
+    # set-1|es = 5, set-1|en = 1, total = 6
