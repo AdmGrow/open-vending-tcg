@@ -1,9 +1,10 @@
-"""Prueba chica: ES y es cuentan juntos.
+"""Prueba chica: ES y es cuentan juntos. Vacio da 0.
 """
 from src.catalog import Catalog, PackSku
 
 def test_cuenta_set_idioma():
     cat = Catalog()
+    assert cat.total_sobres() == 0
     cat.add(PackSku("p1", "tcg-a", "set-1", "es", "booster", 400), 3)
     cat.add(PackSku("p2", "tcg-a", "set-1", "ES", "booster", 400), 2)
     cat.add(PackSku("p3", "tcg-a", "set-1", "en", "blister", 900), 1)
