@@ -63,6 +63,10 @@ class Catalog:
         """Cuenta todos los sobres que hay, de cualquier set o idioma."""
         return sum(self.stock.values())
 
+    def skus_con_stock(self) -> list:
+        """Devuelve los sku que tienen al menos uno."""
+        return [sku for sku, qty in self.stock.items() if qty > 0]
+
 
 if __name__ == "__main__":
     cat = Catalog()
@@ -72,4 +76,5 @@ if __name__ == "__main__":
     print(cat.stock_por_set_idioma())
     print(cat.tiene_stock("set-1", "es"))
     print(cat.total_sobres())
+    print(cat.skus_con_stock())
     # set-1|es = 5, set-1|en = 1, total = 6
