@@ -54,10 +54,14 @@ class Catalog:
             conteo[clave] = conteo.get(clave, 0) + self.get_stock(sku)
         return conteo
 
+    def stock_de(self, set_code: str, language: str) -> int:
+        """Cuantos sobres hay de un set y un idioma."""
+        clave = set_code.strip().lower() + "|" + language.strip().lower()
+        return self.stock_por_set_idioma().get(clave, 0)
+
     def tiene_stock(self, set_code: str, language: str) -> bool:
         """Si hay al menos un sobre de ese set e idioma."""
-        clave = set_code.strip().lower() + "|" + language.strip().lower()
-        return self.stock_por_set_idioma().get(clave, 0) > 0
+        return self.stock_de(set_code, language) > 0
 
     def total_sobres(self) -> int:
         """Cuenta todos los sobres que hay, de cualquier set o idioma."""
@@ -74,6 +78,7 @@ if __name__ == "__main__":
     cat.add(PackSku("p2", "tcg-a", "set-1", "ES", "booster", 400), 2)
     cat.add(PackSku("p3", "tcg-a", "set-1", "en", "blister", 900), 1)
     print(cat.stock_por_set_idioma())
+    print(cat.stock_de("set-1", "es"))
     print(cat.tiene_stock("set-1", "es"))
     print(cat.total_sobres())
     print(cat.skus_con_stock())
