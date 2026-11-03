@@ -1,4 +1,5 @@
 """Prueba chica: ES y es cuentan juntos. Vacio da 0.
+Tambien pruebo que adjust no deje stock negativo.
 """
 from src.catalog import Catalog, PackSku
 
@@ -19,6 +20,19 @@ def test_cuenta_set_idioma():
     assert cat.total_sobres() == 6
     assert sorted(cat.skus_con_stock()) == ["p1", "p2", "p3"]
 
+def test_adjust_no_negativo():
+    cat = Catalog()
+    cat.add(PackSku("p1", "tcg-a", "set-1", "es", "booster", 400), 2)
+    cat.adjust_stock("p1", -1)
+    assert cat.get_stock("p1") == 1
+    try:
+        cat.adjust_stock("p1", -2)
+        assert False, "deberia fallar"
+    except ValueError:
+        pass
+    assert cat.get_stock("p1") == 1
+
 if __name__ == "__main__":
     test_cuenta_set_idioma()
+    test_adjust_no_negativo()
     print("ok")
