@@ -71,6 +71,16 @@ class Catalog:
         """Devuelve los sku que tienen al menos uno."""
         return [sku for sku, qty in self.stock.items() if qty > 0]
 
+    def idiomas_de_set(self, set_code: str) -> list:
+        """Idiomas que tienen stock de este set. Todavia simple."""
+        set_code = set_code.strip().lower()
+        idiomas = []
+        for item in self.items.values():
+            if item.set_code == set_code and self.get_stock(item.sku) > 0:
+                if item.language not in idiomas:
+                    idiomas.append(item.language)
+        return idiomas
+
 
 if __name__ == "__main__":
     cat = Catalog()
@@ -82,4 +92,5 @@ if __name__ == "__main__":
     print(cat.tiene_stock("set-1", "es"))
     print(cat.total_sobres())
     print(cat.skus_con_stock())
-    # set-1|es = 5, set-1|en = 1, total = 6
+    print(cat.idiomas_de_set("set-1"))
+    # set-1|es = 5, set-1|en = 1, total = 6, idiomas = ['es', 'en']
