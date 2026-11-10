@@ -1,5 +1,6 @@
 """Prueba chica: ES y es cuentan juntos. Vacio da 0.
 Tambien pruebo que adjust no deje stock negativo.
+Y que idiomas_de_set solo liste los que tienen stock.
 """
 from src.catalog import Catalog, PackSku
 
@@ -19,6 +20,8 @@ def test_cuenta_set_idioma():
     assert not cat.tiene_stock("set-2", "es")
     assert cat.total_sobres() == 6
     assert sorted(cat.skus_con_stock()) == ["p1", "p2", "p3"]
+    # idiomas que tienen stock
+    assert sorted(cat.idiomas_de_set("set-1")) == ["en", "es"]
 
 def test_adjust_no_negativo():
     cat = Catalog()
